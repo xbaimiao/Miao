@@ -1,0 +1,7 @@
+main: com.xbaimiao.miao.Miao
+author: xbaimiao
+api-version: 1.13
+version: 1.0
+name: Miao
+depend:
+  - Vault
