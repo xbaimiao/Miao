@@ -1,6 +1,6 @@
 package com.xbaimiao.miao.web
 
-enum class Type(val type:String) {
+enum class Type(val type: String) {
 	HTML("text/html"),
 	TXT("text/plain"),
 	XML("text/xml"),

@@ -5,7 +5,6 @@ import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
 import org.bukkit.entity.Player
-import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 object Random {

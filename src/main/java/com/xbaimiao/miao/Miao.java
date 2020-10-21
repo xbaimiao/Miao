@@ -1,6 +1,7 @@
 package com.xbaimiao.miao;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
@@ -20,6 +21,7 @@ public class Miao extends JavaPlugin {
     public static URLClassLoader classloader;
     public static Miao instance;
     private static Method addUrl;
+
     static {
 
         classloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
@@ -33,7 +35,7 @@ public class Miao extends JavaPlugin {
 
     boolean loadKotlin = loadKotlin();
 
-    public static void addURL(File file) {
+    public static void addURL(@NotNull File file) {
         try {
             addUrl.invoke(classloader, file.toURI().toURL());
         } catch (IllegalAccessException | InvocationTargetException | MalformedURLException e) {
@@ -44,7 +46,7 @@ public class Miao extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        if (loadKotlin){
+        if (loadKotlin) {
             getLogger().info("Kotlin load success!");
         }
         instance = this;

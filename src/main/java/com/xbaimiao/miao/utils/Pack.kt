@@ -7,7 +7,7 @@ object Pack {
 
 	/**
 	 * 判断字符串是不是数字
- 	 */
+	 */
 	@JvmStatic
 	fun String.isNumeric(): Boolean {
 		return this.matches("[0-9]*".toRegex())
@@ -22,14 +22,14 @@ object Pack {
 		var a = 0
 		for (x in 0..35) {
 			val item = inventory.getItem(x)
-			if (item == null){
+			if (item == null) {
 				a += 64
 				continue
 			}
 			val itemMeta = item.itemMeta
-			if (itemMeta!= null){
-				if (itemMeta.hasDisplayName()){
-					if (item.type == itemStack.type){
+			if (itemMeta != null) {
+				if (itemMeta.hasDisplayName()) {
+					if (item.type == itemStack.type) {
 						if (item.amount >= 64) {
 							continue
 						}
@@ -46,14 +46,14 @@ object Pack {
 		var a = 0
 		for (x in 0..35) {
 			val item = inventory.getItem(x)
-			if (item == null){
+			if (item == null) {
 				a += 64
 				continue
 			}
 			val itemMeta = item.itemMeta
-			if (itemMeta!= null){
-				if (item == itemStack){
-					if (item.amount >= 64){
+			if (itemMeta != null) {
+				if (item == itemStack) {
+					if (item.amount >= 64) {
 						continue
 					}
 					a += 64 - item.amount

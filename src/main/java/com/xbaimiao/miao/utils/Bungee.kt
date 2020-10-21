@@ -9,26 +9,26 @@ import java.io.IOException
 
 object Bungee {
 
-    init {
-        if (!Bukkit.getMessenger().isOutgoingChannelRegistered(Miao.instance, "BungeeCord")) {
-            Bukkit.getMessenger().registerOutgoingPluginChannel(Miao.instance, "BungeeCord")
-        }
-    }
+	init {
+		if (!Bukkit.getMessenger().isOutgoingChannelRegistered(Miao.instance, "BungeeCord")) {
+			Bukkit.getMessenger().registerOutgoingPluginChannel(Miao.instance, "BungeeCord")
+		}
+	}
 
-    @JvmStatic
-    fun connect(player: Player, server: String) = sendBungeeData(player, "Connect", server)
+	@JvmStatic
+	fun connect(player: Player, server: String) = sendBungeeData(player, "Connect", server)
 
-    private fun sendBungeeData(player: Player, vararg args: String) {
-        val byteArray = ByteArrayOutputStream()
-        val out = DataOutputStream(byteArray)
-        for (arg in args) {
-            try {
-                out.writeUTF(arg)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-        player.sendPluginMessage(Miao.instance, "BungeeCord", byteArray.toByteArray())
-    }
+	private fun sendBungeeData(player: Player, vararg args: String) {
+		val byteArray = ByteArrayOutputStream()
+		val out = DataOutputStream(byteArray)
+		for (arg in args) {
+			try {
+				out.writeUTF(arg)
+			} catch (e: IOException) {
+				e.printStackTrace()
+			}
+		}
+		player.sendPluginMessage(Miao.instance, "BungeeCord", byteArray.toByteArray())
+	}
 
 }

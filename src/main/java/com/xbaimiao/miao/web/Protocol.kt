@@ -13,7 +13,7 @@ enum class Protocol(val code: String) {
 	Http500("500 Internal Server Error"),
 	Http503("503 Service Unavailable");
 
-	fun getBytes():ByteArray{
+	fun getBytes(): ByteArray {
 		return code.toByteArray()
 	}
 

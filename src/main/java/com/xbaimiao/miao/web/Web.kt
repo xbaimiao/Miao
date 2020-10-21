@@ -5,7 +5,7 @@ import java.io.*
 object Web {
 
 	@JvmStatic
-	fun sendTxT(code: Protocol, txt:String ,out: OutputStream){
+	fun sendTxT(code: Protocol, txt: String, out: OutputStream) {
 		val sb = StringBuilder()
 		sb.append("HTTP/1.1 ").append(code.code).append("\r\n")
 				.append("Content-Language:zh-CN \r\n")
@@ -17,7 +17,7 @@ object Web {
 	}
 
 	@JvmStatic
-	fun sendHtml(code: Protocol, html: File, Type: Type, out: OutputStream):Boolean {
+	fun sendHtml(code: Protocol, html: File, Type: Type, out: OutputStream): Boolean {
 		if (html.exists()) {
 			val sb = StringBuilder()
 			sb.append("HTTP/1.1 ").append(code.code).append("\r\n")
@@ -39,7 +39,7 @@ object Web {
 	}
 
 	@JvmStatic
-	fun sendFile(code: Protocol, file: File, Type: Type, out: OutputStream):Boolean {
+	fun sendFile(code: Protocol, file: File, Type: Type, out: OutputStream): Boolean {
 		if (file.exists()) {
 			val fis = FileInputStream(file)
 			val head = StringBuffer()
@@ -62,7 +62,7 @@ object Web {
 	}
 
 	@JvmStatic
-	fun send301(website:String,out: OutputStream){
+	fun send301(website: String, out: OutputStream) {
 		val code = """
 			HTTP/1.1 301 Moved PermanentlyContent-Type:text/html; charset=UTF-8 
 			Location: $website

@@ -5,15 +5,15 @@ import org.bukkit.Material
 object Chinese {
 
 	@JvmStatic
-	fun Material.getChineseName():String?{
+	fun Material.getChineseName(): String? {
 		return try {
 			Data.valueOf(this.name).getName()
-		}catch (e:IllegalArgumentException){
+		} catch (e: IllegalArgumentException) {
 			null
 		}
 	}
 
-	enum class Data(private val str:String){
+	enum class Data(private val str: String) {
 		SOUL_TORCH("灵魂火把"),
 		SOUL_LANTERR("灵魂灯笼"),
 		CRIMSON_NYLIUM("绯红菌岩"),
@@ -1052,7 +1052,7 @@ object Chinese {
 		ZOMBIE_VILLAGER_SPAWN_EGG("僵尸村民刷怪蛋"),
 		ZOMBIE_WALL_HEAD("墙上的僵尸头颅");
 
-		fun getName():String{
+		fun getName(): String {
 			return str
 		}
 	}
