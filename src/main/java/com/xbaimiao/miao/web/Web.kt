@@ -9,7 +9,7 @@ object Web {
 		val sb = StringBuilder()
 		sb.append("HTTP/1.1 ").append(code.code).append("\r\n")
 				.append("Content-Language:zh-CN \r\n")
-				.append("Content-Type:").append(Type.TXT).append("; charset=UTF-8 \r\n\r\n")
+				.append("Content-Type:").append(Protocol.Type.TXT).append("; charset=UTF-8 \r\n\r\n")
 				.append(txt)
 		out.write(sb.toString().toByteArray())
 		out.flush()
@@ -17,7 +17,7 @@ object Web {
 	}
 
 	@JvmStatic
-	fun sendHtml(code: Protocol, html: File, Type: Type, out: OutputStream): Boolean {
+	fun sendHtml(code: Protocol, html: File, Type: Protocol.Type, out: OutputStream): Boolean {
 		if (html.exists()) {
 			val sb = StringBuilder()
 			sb.append("HTTP/1.1 ").append(code.code).append("\r\n")
@@ -39,7 +39,7 @@ object Web {
 	}
 
 	@JvmStatic
-	fun sendFile(code: Protocol, file: File, Type: Type, out: OutputStream): Boolean {
+	fun sendFile(code: Protocol, file: File, Type: Protocol.Type, out: OutputStream): Boolean {
 		if (file.exists()) {
 			val fis = FileInputStream(file)
 			val head = StringBuffer()
