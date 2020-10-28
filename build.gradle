@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile files("C:\\Users\\3104026189\\OneDrive\\我的世界\\Lib\\spigot-1.16.1.jar")
+    compile files("C:\\Users\\3104026189\\OneDrive\\Lib\\spigot-1.16.1.jar")
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
