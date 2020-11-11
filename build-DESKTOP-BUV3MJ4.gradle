@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'//使用shadow对依赖进行打包
+}
+
+group 'com.xbaimiao'
+version '1.0-SNAPSHOT'
+
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}
+
+shadowJar {
+//    manifest {
+//        attributes(
+//                'Main-Class': 'com.xbaimiao.miao.Miao'//入口点
+//        )
+//    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly files("C:\\Users\\31040\\OneDrive\\Lib\\spigot-1.16.1.jar")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+}
