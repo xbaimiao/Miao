@@ -4,6 +4,9 @@ import org.bukkit.Material
 
 object Chinese {
 
+	/**
+	 * 获取material 的中文名
+	 */
 	@JvmStatic
 	fun Material.getChineseName(): String? {
 		return try {

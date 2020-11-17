@@ -1,10 +1,5 @@
 package com.xbaimiao.miao.utils
 
-import org.bukkit.Location
-import org.bukkit.Material
-import org.bukkit.World
-import org.bukkit.inventory.Inventory
-import org.bukkit.inventory.ItemStack
 import java.io.*
 import java.nio.charset.StandardCharsets
 import java.text.SimpleDateFormat
@@ -147,14 +142,4 @@ object Utils {
 		}
 	}
 
-	fun Inventory.safeAddItem(loc: Location, item: ItemStack):Boolean{
-		for (x in 0..35) {
-			if (this.getItem(x) == null || this.getItem(x)!!.type == Material.AIR){
-				this.addItem(item)
-				return true
-			}
-		}
-		loc.world!!.dropItem(loc,item)
-		return false
-	}
 }

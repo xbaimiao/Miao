@@ -1,9 +1,25 @@
 package com.xbaimiao.miao.utils
 
+import org.bukkit.Location
+import org.bukkit.Material
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 
 object InventoryUtils {
+
+	/**
+	 * 以安全的方式 往玩家背包添加物品
+	 */
+	fun Inventory.safeAddItem(loc: Location, item: ItemStack):Boolean{
+		for (x in 0..35) {
+			if (this.getItem(x) == null || this.getItem(x)!!.type == Material.AIR){
+				this.addItem(item)
+				return true
+			}
+		}
+		loc.world!!.dropItem(loc,item)
+		return false
+	}
 
 	/**
 	 * 判断字符串是不是数字
