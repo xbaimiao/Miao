@@ -8,29 +8,29 @@ import java.io.IOException
 
 class Config(val file: File) {
 
-	constructor(plugin: Plugin, filename: String) : this(File(plugin.dataFolder.path, filename))
+    constructor(plugin: Plugin, filename: String) : this(File(plugin.dataFolder.path, filename))
 
-	var config: FileConfiguration
+    var config: FileConfiguration
 
-	fun remove(): Boolean {
-		return file.delete()
-	}
+    fun remove(): Boolean {
+        return file.delete()
+    }
 
-	fun save() = try {
-		config.save(file)
-	} catch (e: IOException) {
-		e.printStackTrace()
-	}
+    fun save() = try {
+        config.save(file)
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
 
-	init {
-		val file1 = file.parentFile
-		if (!file1.exists()) {
-			file1.mkdirs()
-		}
-		if (!file.exists()) {
-			file.createNewFile()
-		}
-		config = YamlConfiguration.loadConfiguration(file)
-	}
+    init {
+        val file1 = file.parentFile
+        if (!file1.exists()) {
+            file1.mkdirs()
+        }
+        if (!file.exists()) {
+            file.createNewFile()
+        }
+        config = YamlConfiguration.loadConfiguration(file)
+    }
 
 }

@@ -13,33 +13,36 @@ object PlayerPoints {
      * 玩家剩余多少 点券
      */
     @JvmStatic
-    fun OfflinePlayer.getPoints():Int{
+    fun OfflinePlayer.getPoints(): Int {
         return pointsAPI.look(this.uniqueId)
     }
 
     @JvmStatic
-    fun OfflinePlayer.givePoints(num: Int){
+    fun OfflinePlayer.givePoints(num: Int) {
         pointsAPI.give(this.uniqueId, num)
     }
 
     @JvmStatic
-    @Deprecated("请使用 OfflinePlayer.givePoints(num:Int)", ReplaceWith("Miao.pointsAPI.give(name, num)", "com.xbaimiao.miao.Miao"))
-    fun givePoints(num: Int, name: String){
+    @Deprecated(
+        "请使用 OfflinePlayer.givePoints(num:Int)",
+        ReplaceWith("Miao.pointsAPI.give(name, num)", "com.xbaimiao.miao.Miao")
+    )
+    fun givePoints(num: Int, name: String) {
         pointsAPI.give(name, num)
     }
 
     @JvmStatic
-    fun OfflinePlayer.hasPoints(num: Int):Boolean{
+    fun OfflinePlayer.hasPoints(num: Int): Boolean {
         return num >= this.getPoints()
     }
 
     @JvmStatic
-    fun OfflinePlayer.takePoints(num: Int){
+    fun OfflinePlayer.takePoints(num: Int) {
         pointsAPI.take(this.uniqueId, num)
     }
 
     @JvmStatic
-    fun OfflinePlayer.setPoints(num: Int){
+    fun OfflinePlayer.setPoints(num: Int) {
         pointsAPI.set(this.uniqueId, num)
     }
 

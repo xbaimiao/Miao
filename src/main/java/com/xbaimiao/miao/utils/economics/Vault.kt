@@ -9,7 +9,7 @@ object Vault {
      * 获取玩家的钱
      */
     @JvmStatic
-    fun OfflinePlayer.getMoney():Double{
+    fun OfflinePlayer.getMoney(): Double {
         return Miao.vaultAPI.getBalance(this)
     }
 
@@ -17,23 +17,23 @@ object Vault {
      * 给与玩家钱
      */
     @JvmStatic
-    fun OfflinePlayer.giveMoney(vault:Double){
-        Miao.vaultAPI.depositPlayer(this,vault)
+    fun OfflinePlayer.giveMoney(vault: Double) {
+        Miao.vaultAPI.depositPlayer(this, vault)
     }
 
     /**
      * 扣除玩家钱
      */
     @JvmStatic
-    fun OfflinePlayer.takeMoney(vault: Double){
-        Miao.vaultAPI.withdrawPlayer(this,vault)
+    fun OfflinePlayer.takeMoney(vault: Double) {
+        Miao.vaultAPI.withdrawPlayer(this, vault)
     }
 
     /**
      * 玩家是否有那么多钱
      */
     @JvmStatic
-    fun OfflinePlayer.hasMoney(vault: Double):Boolean{
+    fun OfflinePlayer.hasMoney(vault: Double): Boolean {
         return this.getMoney() >= vault
     }
 

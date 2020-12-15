@@ -16,16 +16,16 @@ class Send {
 
     var manager = ProtocolLibrary.getProtocolManager()!!
 
-    fun Player.openSignGUI(lines: Array<String>){
+    fun Player.openSignGUI(lines: Array<String>) {
         val z = this.location.z.toInt()
         val y = this.location.y.toInt()
         val x = this.location.x.toInt()
         val blockChange = manager.createPacket(PacketType.Play.Server.BLOCK_CHANGE)
-        blockChange.blockPositionModifier.write(0, BlockPosition(x,y,z))
+        blockChange.blockPositionModifier.write(0, BlockPosition(x, y, z))
         blockChange.blockData.write(0, WrappedBlockData.createData(Material.ACACIA_SIGN))
 
         val updateSign: PacketContainer = manager.createPacket(UPDATE_SIGN)
-        updateSign.blockPositionModifier.write(0, BlockPosition(x,y,z))
+        updateSign.blockPositionModifier.write(0, BlockPosition(x, y, z))
         updateSign.chatComponentArrays.write(
             0,
             arrayOf(
@@ -37,8 +37,8 @@ class Send {
         )
 
         val open = manager.createPacket(OPEN_SIGN_ENTITY)
-        open.blockPositionModifier.write(0, BlockPosition(x,y,z))
-        manager.sendServerPacket(player, blockChange);
+        open.blockPositionModifier.write(0, BlockPosition(x, y, z))
+        manager.sendServerPacket(player, blockChange)
     }
 
     /**
