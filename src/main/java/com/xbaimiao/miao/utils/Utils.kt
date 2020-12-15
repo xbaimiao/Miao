@@ -1,5 +1,9 @@
 package com.xbaimiao.miao.utils
 
+import org.bukkit.Location
+import org.bukkit.Material
+import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.ItemStack
 import java.io.*
 import java.nio.charset.StandardCharsets
 import java.text.SimpleDateFormat
@@ -8,48 +12,6 @@ import java.util.jar.JarFile
 import kotlin.collections.ArrayList
 
 object Utils {
-
-	private val jarFiles by lazy {
-		val filePlugins = File("${System.getProperty("user.dir")}${File.separator}plugins")
-		val list = ArrayList<JarFile>()
-		if (filePlugins.listFiles() != null) {
-			for (file in filePlugins.listFiles()!!) {
-				if (!file.isDirectory) {
-					if (file.name.endsWith(".jar")) {
-						list.add(JarFile(file))
-					}
-				}
-			}
-		}
-		list
-	}
-
-
-	@JvmStatic
-	fun getPluginFileName(name: String): String? {
-		for (jarFile in jarFiles) {
-			val pluginYml = jarFile.getEntry("plugin.yml") ?: continue
-			val br = BufferedReader(InputStreamReader(jarFile.getInputStream(pluginYml), StandardCharsets.UTF_8))
-			var s: String?
-			while (br.readLine().also { s = it } != null) {
-				if (s != null) {
-					s = s!!.replace(" ", "")
-					if (s!!.startsWith("name")) {
-						if (s!!.split(":")[1] == name) {
-							return jarFile.name
-						}
-					}
-				}
-			}
-		}
-		return null
-	}
-
-	@JvmStatic
-	fun getPluginFile(name: String): File? {
-		val a = getPluginFileName(name) ?: return null
-		return File(a)
-	}
 
 	private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
@@ -140,6 +102,20 @@ object Utils {
 		} catch (e: FileNotFind) {
 			e.printStackTrace()
 		}
+	}
+
+	/**
+	 * 以安全的方式 往玩家背包添加物品
+	 */
+	fun Inventory.safeAddItem(loc: Location, item: ItemStack):Boolean{
+		for (x in 0..35) {
+			if (this.getItem(x) == null || this.getItem(x)!!.type == Material.AIR){
+				this.addItem(item)
+				return true
+			}
+		}
+		loc.world!!.dropItem(loc,item)
+		return false
 	}
 
 }
