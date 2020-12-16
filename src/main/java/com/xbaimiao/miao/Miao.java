@@ -11,13 +11,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class Miao extends JavaPlugin implements Listener, CommandExecutor {
 
+    private static final MiaoManager miaoManager = new MiaoManager();
     public static Miao instance;
-
     public static String prefix = "§7§l[§e§l!§7§l] §7";
-
     public static Economy vaultAPI = null;
-
-    private static MiaoManager miaoManager;
 
     public static MiaoManager getMiaoManager() {
         return miaoManager;
@@ -31,7 +28,6 @@ public class Miao extends JavaPlugin implements Listener, CommandExecutor {
     public void onEnable() {
         instance = this;
         setupEconomy();
-        miaoManager = new MiaoManager();
     }
 
     private void setupEconomy() {

@@ -1,4 +1,4 @@
-package com.xbaimiao.miao.utils
+package com.xbaimiao.miao.utils.player
 
 import com.xbaimiao.miao.Miao
 import org.bukkit.Bukkit

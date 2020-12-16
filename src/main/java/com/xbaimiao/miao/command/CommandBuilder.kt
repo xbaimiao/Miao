@@ -36,6 +36,12 @@ class CommandBuilder(val commandName: String, val plugin: Plugin) {
         return this
     }
 
+    fun setLabel(string: String?): CommandBuilder {
+        string ?: return this
+        command.label = string
+        return this
+    }
+
     /**
      * 设置别名
      */
@@ -89,7 +95,7 @@ class CommandBuilder(val commandName: String, val plugin: Plugin) {
     }
 
     fun register() {
-        commandMap.register(commandName, command)
+        commandMap.register(command.label, commandName, command)
     }
 
 }

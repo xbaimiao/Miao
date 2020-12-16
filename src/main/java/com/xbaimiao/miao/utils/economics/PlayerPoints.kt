@@ -24,8 +24,8 @@ object PlayerPoints {
 
     @JvmStatic
     @Deprecated(
-        "请使用 OfflinePlayer.givePoints(num:Int)",
-        ReplaceWith("Miao.pointsAPI.give(name, num)", "com.xbaimiao.miao.Miao")
+            "请使用 OfflinePlayer.givePoints(num:Int)",
+            ReplaceWith("Miao.pointsAPI.give(name, num)", "com.xbaimiao.miao.Miao")
     )
     fun givePoints(num: Int, name: String) {
         pointsAPI.give(name, num)

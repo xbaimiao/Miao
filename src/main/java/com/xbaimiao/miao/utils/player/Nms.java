@@ -30,7 +30,7 @@ public class Nms {
 
             Object pcon = nmsp.getClass().getField("playerConnection").get(nmsp);
             pcon.getClass().getMethod("sendPacket", new Class[]{getNmsClass("Packet")}).invoke(pcon,
-					ppoc);
+                    ppoc);
         } catch (IllegalAccessException | InstantiationException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException | ClassNotFoundException | NoSuchFieldException e) {
             e.printStackTrace();
@@ -51,7 +51,7 @@ public class Nms {
 
             Object pcon = nmsp.getClass().getField("playerConnection").get(nmsp);
             pcon.getClass().getMethod("sendPacket", new Class[]{getNmsClass("Packet")}).invoke(pcon,
-					ppoc);
+                    ppoc);
         } catch (IllegalAccessException | InstantiationException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException | ClassNotFoundException | NoSuchFieldException e) {
             e.printStackTrace();

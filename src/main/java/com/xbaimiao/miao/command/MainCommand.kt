@@ -6,8 +6,8 @@ package com.xbaimiao.miao.command
  * sender: CommandSender, args: Array<out String>
  */
 annotation class MainCommand(
-    val name: String,
-    val usage: String = "default",
-    val permission: String = "default",
-    val aliases: String = "default"
+        val name: String,
+        val usage: String = "default",
+        val permission: String = "default",
+        val aliases: String = "default"
 )

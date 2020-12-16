@@ -1,4 +1,4 @@
-package com.xbaimiao.miao.utils
+package com.xbaimiao.miao.utils.player
 
 import org.bukkit.Location
 import org.bukkit.Material

@@ -13,9 +13,9 @@ class ItemBuilder(private val itemStack: ItemStack) {
     constructor(material: Material) : this(ItemStack(material))
 
     private val mate =
-        if (itemStack.itemMeta != null)
-            itemStack.itemMeta!!
-        else Bukkit.getItemFactory().getItemMeta(itemStack.type)!!
+            if (itemStack.itemMeta != null)
+                itemStack.itemMeta!!
+            else Bukkit.getItemFactory().getItemMeta(itemStack.type)!!
 
     /**
      * 设置Lore

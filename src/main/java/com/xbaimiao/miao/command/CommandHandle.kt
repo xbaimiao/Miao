@@ -16,10 +16,10 @@ interface CommandHandle : CommandExecutor, TabExecutor {
     }
 
     override fun onTabComplete(
-        p0: CommandSender,
-        p1: Command,
-        p2: String,
-        p3: Array<out String>
+            p0: CommandSender,
+            p1: Command,
+            p2: String,
+            p3: Array<out String>
     ): MutableList<String>? {
         return onTabComplete(p0, p3)
     }
