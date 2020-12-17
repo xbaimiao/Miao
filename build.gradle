@@ -23,6 +23,7 @@ dependencies {
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\spigot-1.16.1.jar")
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\ProtocolLib.jar")
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\Vault-1.7.2.jar")
+    compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\waterfall.jar")
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\PlayerPoints.jar")
     compile files("C:\\Users\\31040\\OneDrive\\Lib\\mysql-connector-java-5.1.39-bin.jar")
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
