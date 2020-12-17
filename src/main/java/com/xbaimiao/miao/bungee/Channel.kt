@@ -7,7 +7,7 @@ import java.net.Socket
 
 class Channel(private val host: String, private val port: Int) {
 
-    constructor(): this("127.0.0.1",22223)
+    constructor() : this("127.0.0.1", 22223)
 
     private lateinit var socket: Socket
     private var ip: String? = null
@@ -63,7 +63,7 @@ class Channel(private val host: String, private val port: Int) {
     /**
      * 关闭输出流
      */
-    fun shutdown(): Channel{
+    fun shutdown(): Channel {
         isShutdowm = true
         socket.shutdownOutput()
         return this
@@ -73,7 +73,7 @@ class Channel(private val host: String, private val port: Int) {
      * 读取bungee的返回值
      */
     fun readUTF(): String {
-        if (!isShutdowm){
+        if (!isShutdowm) {
             shutdown()
         }
         val br = BufferedReader(InputStreamReader(getInputStream())) //解析浏览器请求的地址

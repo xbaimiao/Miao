@@ -27,13 +27,13 @@ class Send {
         val updateSign: PacketContainer = manager.createPacket(UPDATE_SIGN)
         updateSign.blockPositionModifier.write(0, BlockPosition(x, y, z))
         updateSign.chatComponentArrays.write(
-                0,
-                arrayOf(
-                        WrappedChatComponent.fromText(lines[0]),
-                        WrappedChatComponent.fromText(lines[1]),
-                        WrappedChatComponent.fromText(lines[2]),
-                        WrappedChatComponent.fromText(lines[3])
-                )
+            0,
+            arrayOf(
+                WrappedChatComponent.fromText(lines[0]),
+                WrappedChatComponent.fromText(lines[1]),
+                WrappedChatComponent.fromText(lines[2]),
+                WrappedChatComponent.fromText(lines[3])
+            )
         )
 
         val open = manager.createPacket(OPEN_SIGN_ENTITY)

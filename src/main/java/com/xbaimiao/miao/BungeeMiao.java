@@ -12,18 +12,18 @@ import java.nio.charset.StandardCharsets;
 public class BungeeMiao extends Plugin {
 
     public static BungeeMiao plugin;
-    File configFile = new File(getDataFolder() + File.separator + "config.yml");
     public static Configuration config;
+    File configFile = new File(getDataFolder() + File.separator + "config.yml");
     ConfigurationProvider cProvider = ConfigurationProvider.getProvider(YamlConfiguration.class);
 
     @Override
     public void onEnable() {
         plugin = this;
         try {
-            if (!configFile.getParentFile().exists()){
+            if (!configFile.getParentFile().exists()) {
                 configFile.getParentFile().mkdirs();
             }
-            if (!configFile.exists()){
+            if (!configFile.exists()) {
                 if (configFile.createNewFile()) {
                     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(configFile), StandardCharsets.UTF_8));
                     bw.write("port: 22223");

@@ -9,7 +9,7 @@ class ServerChannel(val port: Int) {
 
     private val myExecutorService: ExecutorService = Executors.newCachedThreadPool()
 
-    fun start(){
+    fun start() {
         Thread {
             println("Channel Start ... Port:$port")
             val serverSocket = ServerSocket(port)

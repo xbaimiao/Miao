@@ -55,7 +55,8 @@ object Http {
             conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
             conn.connectTimeout = 4000
             conn.connect() // 建立实际的连接
-            val input = BufferedReader(InputStreamReader(conn.getInputStream(), "UTF-8")) // 定义BufferedReader输入流来读取URL的响应
+            val input =
+                BufferedReader(InputStreamReader(conn.getInputStream(), "UTF-8")) // 定义BufferedReader输入流来读取URL的响应
             var line: String?
             while (input.readLine().also { line = it } != null) {
                 result.append(line)

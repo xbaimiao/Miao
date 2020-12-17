@@ -2,6 +2,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 buildscript {
     repositories {
+        mavenCentral()
         jcenter()
     }
     dependencies {
@@ -13,11 +14,10 @@ plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.4.21'
     id 'com.github.johnrengelman.shadow' version '5.2.0'//使用shadow对依赖进行打包
+    id 'org.jetbrains.dokka-android' version('0.9.17')
 }
 
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'org.jetbrains.dokka-android'
 
 group 'com.xbaimiao'
 version '1.0-SNAPSHOT'
@@ -27,28 +27,23 @@ tasks.withType(JavaCompile){
 }
 
 repositories {
-    jcenter()
     mavenCentral()
+    jcenter()
 }
 
-android {
-// 声明dokka配置DSL
-    dokka {
-        // 输出格式，目前支持五种，html, javadoc,html-as-java, markdown,kotlin-website*
-        outputFormat = 'html'
-        // 文档输出目录
-        outputDirectory = "$buildDir/javadoc"
-    }
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
 }
-
 
 dependencies {
+    compile group: 'org.jetbrains.dokka', name: 'dokka-fatjar', version: '0.9.17'
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\spigot-1.16.1.jar")
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\ProtocolLib.jar")
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\Vault-1.7.2.jar")
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\waterfall.jar")
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\PlayerPoints.jar")
-    compile files("C:\\Users\\31040\\OneDrive\\Lib\\mysql-connector-java-5.1.39-bin.jar")
+//    compileOnly files("C:\\Users\\31040\\OneDrive\\Lib\\mysql-connector-java-5.1.39-bin.jar")
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     compile 'org.apache.httpcomponents:httpclient:4.5.12'
     testCompile group: 'junit', name: 'junit', version: '4.12'

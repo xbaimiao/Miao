@@ -8,7 +8,7 @@ import java.io.InputStreamReader
 import java.io.PrintWriter
 import java.net.Socket
 
-class Server(val socket: Socket):Runnable {
+class Server(val socket: Socket) : Runnable {
 
     private val plugin = BungeeMiao.plugin
     private val ip = socket.inetAddress.toString().substring(1)
@@ -16,12 +16,12 @@ class Server(val socket: Socket):Runnable {
     private val output = socket.getOutputStream()
 
     override fun run() {
-        if (isLocal()){
+        if (isLocal()) {
             val message = read()
             plugin.logger.info("from $ip/command | $message")
             val args = message.split(":")
             try {
-                when(valueOf(args[0])){
+                when (valueOf(args[0])) {
                     ALL_PLAYER -> send(plugin.proxy.players.size)
                     ALL_PLAYER_LIST -> {
                         val players = ArrayList(plugin.proxy.players)
@@ -34,7 +34,7 @@ class Server(val socket: Socket):Runnable {
                     SERVER -> {
                         val servers = plugin.proxy.serversCopy
                         val serverName = args[1]
-                        if (servers[serverName] == null){
+                        if (servers[serverName] == null) {
                             send("null")
                         }
                         send(servers[serverName]!!.toString())
@@ -52,7 +52,7 @@ class Server(val socket: Socket):Runnable {
                         send(plugin.proxy.getServerInfo(serverName).players.toString())
                     }
                     MESSAGE -> {
-                        if (args[2] == ""){
+                        if (args[2] == "") {
                             send("no")
                             return
                         }
@@ -65,11 +65,11 @@ class Server(val socket: Socket):Runnable {
                         send(plugin.proxy.getPlayer(playerName).uniqueId.toString())
                     }
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 plugin.logger.warning("$message command error")
                 close()
             }
-        }else close()
+        } else close()
     }
 
     private fun read(): String {
@@ -82,7 +82,7 @@ class Server(val socket: Socket):Runnable {
         return stringBuilder.toString().toUpperCase()
     }
 
-    private fun send(string: String){
+    private fun send(string: String) {
         val os = socket.getOutputStream()
         val pw = PrintWriter(os)
         pw.write(string)
@@ -90,15 +90,15 @@ class Server(val socket: Socket):Runnable {
         socket.shutdownOutput()
     }
 
-    private fun send(num: Int){
+    private fun send(num: Int) {
         send(num.toString())
     }
 
-    private fun isLocal():Boolean{
+    private fun isLocal(): Boolean {
         return ip == "127.0.0.1"
     }
 
-    private fun close(){
+    private fun close() {
         input.close()
         output.close()
         socket.close()

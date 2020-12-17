@@ -11,7 +11,7 @@ object FileUtils {
         val fileName = StringBuilder()
         name.forEach {
             fileName.append(it)
-                    .append(File.separator)
+                .append(File.separator)
         }
         return File(fileName.toString())
     }
