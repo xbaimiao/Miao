@@ -15,7 +15,9 @@ object Random {
         it.add(Material.AIR)
     }
 
-
+    /**
+     * 随机传送
+     */
     @JvmStatic
     fun tp(p: Player, sendTitle: Boolean, world: World) {
         val x: Int = Random.nextInt(8000) + 2000
@@ -43,6 +45,9 @@ object Random {
         tp(p, sendTitle, world)
     }
 
+    /**
+     * 随机传送
+     */
     @JvmStatic
     fun tp(p: String, sendTitle: Boolean, world: String) {
         val player = Bukkit.getPlayer(p)

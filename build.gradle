@@ -1,8 +1,23 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
+    }
+}
+
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.4.21'
     id 'com.github.johnrengelman.shadow' version '5.2.0'//使用shadow对依赖进行打包
 }
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jetbrains.dokka-android'
 
 group 'com.xbaimiao'
 version '1.0-SNAPSHOT'
@@ -12,12 +27,20 @@ tasks.withType(JavaCompile){
 }
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
-shadowJar {
-
+android {
+// 声明dokka配置DSL
+    dokka {
+        // 输出格式，目前支持五种，html, javadoc,html-as-java, markdown,kotlin-website*
+        outputFormat = 'html'
+        // 文档输出目录
+        outputDirectory = "$buildDir/javadoc"
+    }
 }
+
 
 dependencies {
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\spigot-1.16.1.jar")
@@ -29,4 +52,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     compile 'org.apache.httpcomponents:httpclient:4.5.12'
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        filter ReplaceTokens, tokens: [version: version]
+    }
 }

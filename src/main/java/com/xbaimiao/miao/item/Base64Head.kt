@@ -7,6 +7,9 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
 import java.util.*
 
+/**
+ * 用于通过base64 创建头颅
+ */
 class Base64Head(base64: String) : ItemStack(Material.PLAYER_HEAD, 1) {
 
     init {

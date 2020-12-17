@@ -12,10 +12,16 @@ class Config(val file: File) {
 
     var config: FileConfiguration
 
+    /**
+     * 移除配置文件
+     */
     fun remove(): Boolean {
         return file.delete()
     }
 
+    /**
+     * 保存配置文件
+     */
     fun save() = try {
         config.save(file)
     } catch (e: IOException) {

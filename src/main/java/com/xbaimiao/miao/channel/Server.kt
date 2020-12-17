@@ -15,7 +15,6 @@ class Server(val socket: Socket):Runnable {
     private val input: InputStream = socket.getInputStream()
     private val output = socket.getOutputStream()
 
-
     override fun run() {
         if (isLocal()){
             val message = read()

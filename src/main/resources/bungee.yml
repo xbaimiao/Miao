@@ -1,4 +1,4 @@
 main: com.xbaimiao.miao.BungeeMiao
 author: xbaimiao
 name: Miao
-version: 1.2
+version: @version@

@@ -21,6 +21,17 @@ object Bungee {
     @JvmStatic
     fun connect(player: Player, server: String) = sendBungeeData(player, "Connect", server)
 
+    /**
+     * 踢出玩家
+     */
+    @JvmStatic
+    fun kick(player: Player, string: String) = sendBungeeData(player, "KickPlayer", player.name, string)
+
+    /**
+     * 发送消息s
+     */
+    fun sendMessage(player: Player, string: String) = sendBungeeData(player, "Message", player.name, string)
+
     private fun sendBungeeData(player: Player, vararg args: String) {
         val byteArray = ByteArrayOutputStream()
         val out = DataOutputStream(byteArray)

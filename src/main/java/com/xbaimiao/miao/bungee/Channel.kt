@@ -11,7 +11,7 @@ class Channel(private val host: String, private val port: Int) {
 
     private lateinit var socket: Socket
     private var ip: String? = null
-    var isShutdowm = false
+    private var isShutdowm = false
 
     private fun getOutputStream(): OutputStream {
         return socket.getOutputStream()
@@ -21,11 +21,17 @@ class Channel(private val host: String, private val port: Int) {
         return socket.getInputStream()
     }
 
+    /**
+     * 建立连接
+     */
     fun connect(): Channel {
         socket = Socket(host, port)
         return this
     }
 
+    /**
+     * 获取本地ip地址
+     */
     fun getLocalIp(): String {
         if (ip == null) {
             ip = InetAddress.getLocalHost().hostAddress
@@ -34,6 +40,9 @@ class Channel(private val host: String, private val port: Int) {
         return ip!!
     }
 
+    /**
+     * 发送Channel
+     */
     fun send(type: ChannelType): Channel {
         val pw = PrintWriter(getOutputStream())
         pw.write(type.name)
@@ -41,6 +50,9 @@ class Channel(private val host: String, private val port: Int) {
         return this
     }
 
+    /**
+     * 发送 附加参数
+     */
     fun writeUTF(string: String): Channel {
         val pw = PrintWriter(getOutputStream())
         pw.write(":$string")
@@ -48,12 +60,18 @@ class Channel(private val host: String, private val port: Int) {
         return this
     }
 
+    /**
+     * 关闭输出流
+     */
     fun shutdown(): Channel{
         isShutdowm = true
         socket.shutdownOutput()
         return this
     }
 
+    /**
+     * 读取bungee的返回值
+     */
     fun readUTF(): String {
         if (!isShutdowm){
             shutdown()
@@ -67,22 +85,4 @@ class Channel(private val host: String, private val port: Int) {
         return stringBuilder.toString()
     }
 
-//    companion object {
-//        @JvmStatic
-//        fun main(args: Array<String>) {
-//            val players = ChannelUtils.listFromString(Channel().connect().send(ChannelType.ALL_PLAYER_LIST).readUTF())
-//            println(Channel().connect().send(ChannelType.ALL_PLAYER_LIST).readUTF())
-//            players.forEach {
-//                val msg = Channel()
-//                        .connect()
-//                        .send(ChannelType.MESSAGE)
-//                        .writeUTF(it)
-//                        .writeUTF("傻逼")
-//                        .shutdown()
-//                        .readUTF()
-//                println(msg)
-//            }
-//
-//        }
-//    }
 }

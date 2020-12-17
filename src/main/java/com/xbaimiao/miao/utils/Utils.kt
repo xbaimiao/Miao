@@ -11,6 +11,9 @@ import kotlin.collections.ArrayList
 
 object Utils {
 
+    /**
+     * plugins的全部插件
+     */
     val jarFiles by lazy {
         val filePlugins = File("${System.getProperty("user.dir")}${File.separator}plugins")
         val list = ArrayList<JarFile>()
@@ -27,6 +30,9 @@ object Utils {
     }
 
 
+    /**
+     * 获取插件的文件名字
+     */
     @JvmStatic
     fun getPluginFileName(name: String): String? {
         for (jarFile in jarFiles) {
@@ -47,6 +53,9 @@ object Utils {
         return null
     }
 
+    /**
+     * 获取插件对应的文件
+     */
     @JvmStatic
     fun getPluginFile(name: String): File? {
         val a = getPluginFileName(name) ?: return null
@@ -55,12 +64,18 @@ object Utils {
 
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
+    /**
+     * 时间戳转时间
+     */
     @JvmStatic
     fun stampToDate(s: Long): String {
         val date = Date(s)
         return simpleDateFormat.format(date)
     }
 
+    /**
+     * 时间转时间戳
+     */
     @JvmStatic
     fun dateToStamp(s: String): Long {
         val date = simpleDateFormat.parse(s)
@@ -68,6 +83,9 @@ object Utils {
         return ts.toString().toLong()
     }
 
+    /**
+     * 当前时间s
+     */
     @JvmStatic
     fun getCurrentTime(): String {
         return stampToDate(System.currentTimeMillis())
