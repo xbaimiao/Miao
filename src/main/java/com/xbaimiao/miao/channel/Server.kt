@@ -1,5 +1,6 @@
 package com.xbaimiao.miao.channel
 
+import com.google.gson.Gson
 import com.xbaimiao.miao.BungeeMiao
 import com.xbaimiao.miao.bungee.channel.ChannelType.*
 import net.md_5.bungee.BungeeTitle
@@ -20,7 +21,7 @@ class Server(private val socket: Socket) : Runnable {
     override fun run() {
         if (isLocal()) {
             val message = read()
-            plugin.logger.info("from $ip/command | $message")
+            plugin.logger.info("$ip/command: §6$message")
             val args = message.split(" ")
             try {
                 when (valueOf(args[0])) {
@@ -51,6 +52,12 @@ class Server(private val socket: Socket) : Runnable {
                             return
                         }
                         plugin.proxy.getPlayer(args[1]).sendMessage(args[2])
+                        sendOK()
+                    }
+
+                    TEXT_COMPONENT -> {
+                        val gson = Gson()
+                        plugin.proxy.getPlayer(args[1]).sendMessage(gson.fromJson(args[2],TextComponent::class.java))
                         sendOK()
                     }
 

@@ -1,13 +1,16 @@
 package com.xbaimiao.miao.bungee.channel
 
-import com.xbaimiao.miao.bungee.type.MessageChannel
-import com.xbaimiao.miao.bungee.type.TitleChannel
+import com.google.gson.Gson
+import com.xbaimiao.miao.bungee.type.BungeeChannel
+import com.xbaimiao.miao.bungee.type.PlayerChannel
+import com.xbaimiao.miao.bungee.type.ServerChannel
+import net.md_5.bungee.api.chat.ClickEvent
+import net.md_5.bungee.api.chat.TextComponent
 import java.io.InputStream
 import java.io.OutputStream
-import java.io.PrintWriter
 import java.net.Socket
 
-class Channel(private val host: String, private val port: Int) {
+class Channel(val host: String, val port: Int) {
 
     constructor() : this("127.0.0.1", 22223)
 
@@ -35,23 +38,26 @@ class Channel(private val host: String, private val port: Int) {
         return this
     }
 
-    private fun send(type: ChannelType): Channel {
-        connect()
-        val pw = PrintWriter(getOutputStream())
-        pw.write(type.name)
-        pw.flush()
-        return this
-    }
+    /**
+     * 获取指定服务器的信息
+     */
+    fun getServer(server: String) = ServerChannel(this, server)
 
     /**
-     * 发送TitleChannel
+     * 获取玩家信息
      */
-    fun sendTitle(player: String, title: String, subTitle: String): TitleChannel = TitleChannel(send(ChannelType.TITLE), player, title, subTitle)
+    fun getPlayer(name: String) = PlayerChannel(this, name)
 
-    fun sendMessage(name: String, msg: String): MessageChannel = MessageChannel((send(ChannelType.MESSAGE)), name, msg)
+    /**
+     * 获取Bungee的信息
+     */
+    fun getBungee() = BungeeChannel(this)
+
 
 }
 
 fun main() {
-    println(Channel().sendTitle("xbaimiao", "111", "222").isSuccess)
+    val message = TextComponent("点击打开百度")
+    message.clickEvent = ClickEvent(ClickEvent.Action.OPEN_URL,"https://fanyi.baidu.com/#en/zh/restricted")
+    Channel().getPlayer("xbaimiao").sendMessage(message)
 }

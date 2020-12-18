@@ -23,12 +23,6 @@ enum class ChannelType {
     SERVER,
 
     /**
-     * 玩家ip
-     * writeUTF playerName
-     */
-    IP,
-
-    /**
      * 指定服务器玩家数量
      * writeUTF ServerName
      */
@@ -39,6 +33,12 @@ enum class ChannelType {
      * writeUTF ServerName
      */
     PLAYER_LIST,
+
+    /**
+     * 玩家ip
+     * writeUTF playerName
+     */
+    IP,
 
     /**
      * 发送消息
@@ -57,4 +57,9 @@ enum class ChannelType {
      * 发送title
      */
     TITLE,
+
+    /**
+     * TextComponent
+     */
+    TEXT_COMPONENT,
 }

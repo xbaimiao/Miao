@@ -5,12 +5,22 @@ import java.io.InputStreamReader
 import java.io.PrintWriter
 import java.net.InetAddress
 
-abstract class ChannelRead(private val channel: Channel) {
+open class ChannelRead(private val channel: Channel) {
+
+    companion object {
+        @JvmStatic
+        fun String.listFromString(): List<String> {
+            val list = this.substring(1, this.length - 1).replace(" ", "")
+            return ArrayList(list.split(","))
+        }
+    }
+
+    fun getChannelRead(): ChannelRead = ChannelRead(Channel(channel.host, channel.port))
 
     /**
      * 关闭输出流
      */
-    fun shutdown() {
+    private fun shutdown() {
         channel.isShutdowm = true
         channel.socket.shutdownOutput()
     }
@@ -34,7 +44,7 @@ abstract class ChannelRead(private val channel: Channel) {
     /**
      * 发送 附加参数
      */
-    fun writeUTF(string: String):ChannelRead {
+    fun writeUTF(string: String): ChannelRead {
         val pw = PrintWriter(channel.getOutputStream())
         pw.write(" $string")
         pw.flush()
@@ -44,10 +54,12 @@ abstract class ChannelRead(private val channel: Channel) {
     /**
      * 发送Channel
      */
-    fun send(type: ChannelType) {
+    fun send(type: ChannelType): ChannelRead {
+        channel.connect()
         val pw = PrintWriter(channel.getOutputStream())
         pw.write(type.name)
         pw.flush()
+        return this
     }
 
     fun getLocalIp(): String = InetAddress.getLocalHost().hostAddress
