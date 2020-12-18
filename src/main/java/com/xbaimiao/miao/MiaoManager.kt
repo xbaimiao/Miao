@@ -10,7 +10,7 @@ class MiaoManager {
     fun registerCommand(cmd: CommandHandle, plugin: JavaPlugin) {
         val mainCommand: MainCommand? = cmd::class.java.getAnnotation(MainCommand::class.java)
         if (mainCommand == null) {
-            Miao.getInstance().logger.warning("${cmd}未注解MainCommand")
+            Miao.instance.logger.warning("${cmd}未注解MainCommand")
             return
         }
         val permission = if (mainCommand.permission == "default") null else mainCommand.permission

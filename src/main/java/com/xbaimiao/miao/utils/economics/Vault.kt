@@ -10,7 +10,7 @@ object Vault {
      */
     @JvmStatic
     fun OfflinePlayer.getMoney(): Double {
-        return Miao.vaultAPI.getBalance(this)
+        return Miao.vaultAPI!!.getBalance(this)
     }
 
     /**
@@ -18,7 +18,7 @@ object Vault {
      */
     @JvmStatic
     fun OfflinePlayer.giveMoney(vault: Double) {
-        Miao.vaultAPI.depositPlayer(this, vault)
+        Miao.vaultAPI!!.depositPlayer(this, vault)
     }
 
     /**
@@ -26,7 +26,7 @@ object Vault {
      */
     @JvmStatic
     fun OfflinePlayer.takeMoney(vault: Double) {
-        Miao.vaultAPI.withdrawPlayer(this, vault)
+        Miao.vaultAPI!!.withdrawPlayer(this, vault)
     }
 
     /**

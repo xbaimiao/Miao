@@ -1,4 +1,4 @@
-package com.xbaimiao.miao.bungee
+package com.xbaimiao.miao.bungee.utils
 
 import com.xbaimiao.miao.Miao
 import org.bukkit.Bukkit
@@ -28,7 +28,7 @@ object Bungee {
     fun kick(player: Player, string: String) = sendBungeeData(player, "KickPlayer", player.name, string)
 
     /**
-     * 发送消息s
+     * 发送消息
      */
     fun sendMessage(player: Player, string: String) = sendBungeeData(player, "Message", player.name, string)
 

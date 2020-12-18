@@ -3,7 +3,7 @@ package com.xbaimiao.miao.command
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 /**
- * sender: CommandSender, args: Array<out String>
+ * 命令注解
  */
 annotation class MainCommand(
     val name: String,

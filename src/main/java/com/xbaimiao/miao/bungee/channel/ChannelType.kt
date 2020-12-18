@@ -1,4 +1,4 @@
-package com.xbaimiao.miao.bungee
+package com.xbaimiao.miao.bungee.channel
 
 enum class ChannelType {
     /**
@@ -52,4 +52,9 @@ enum class ChannelType {
      * wtiteUTF PlayerName
      */
     UUID,
+
+    /**
+     * 发送title
+     */
+    TITLE,
 }

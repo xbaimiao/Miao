@@ -2,12 +2,14 @@ package com.xbaimiao.miao.channel
 
 import java.net.ServerSocket
 import java.net.Socket
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import java.util.concurrent.*
 
 class ServerChannel(val port: Int) {
 
-    private val myExecutorService: ExecutorService = Executors.newCachedThreadPool()
+    private val myExecutorService = ThreadPoolExecutor(
+            5,10,60,
+            TimeUnit.SECONDS,ArrayBlockingQueue(3), RejectedThreadPoolHandler()
+    )
 
     fun start() {
         Thread {
@@ -18,6 +20,11 @@ class ServerChannel(val port: Int) {
                 myExecutorService.execute(Server(socket!!))
             }
         }.start()
+    }
+
+    class RejectedThreadPoolHandler : RejectedExecutionHandler {
+        override fun rejectedExecution(r: Runnable, executor: ThreadPoolExecutor) {
+        }
     }
 
 }
