@@ -33,7 +33,7 @@ object PlayerPoints {
 
     @JvmStatic
     fun OfflinePlayer.hasPoints(num: Int): Boolean {
-        return num >= this.getPoints()
+        return num <= this.getPoints()
     }
 
     @JvmStatic

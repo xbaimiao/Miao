@@ -5,6 +5,7 @@ import com.xbaimiao.miao.BungeeMiao
 import com.xbaimiao.miao.bungee.channel.ChannelType.*
 import net.md_5.bungee.BungeeTitle
 import net.md_5.bungee.api.chat.TextComponent
+import net.md_5.bungee.api.config.ServerInfo
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -68,6 +69,11 @@ class Server(private val socket: Socket) : Runnable {
                                 .title(TextComponent(args[2]))
                                 .subTitle(TextComponent(args[3]))
                         plugin.proxy.getPlayer(args[1]).sendTitle(title)
+                        sendOK()
+                    }
+                    CONNECT -> {
+                        val server = plugin.proxy.getServerInfo(args[2])
+                        plugin.proxy.getPlayer(args[1]).connect(server)
                         sendOK()
                     }
                 }

@@ -1,5 +1,6 @@
 package com.xbaimiao.miao
 
+import com.xbaimiao.miao.event.t.PlayerRunnable
 import net.milkbowl.vault.economy.Economy
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -12,11 +13,12 @@ class Miao : JavaPlugin(), Listener, CommandExecutor {
     override fun onEnable() {
         instance = this
         setupEconomy()
+        PlayerRunnable().runTaskTimerAsynchronously(this, 20, 20)
     }
 
     private fun setupEconomy() {
         val economyProvider = server.servicesManager.getRegistration(
-            Economy::class.java
+                Economy::class.java
         )
         if (economyProvider != null) {
             vaultAPI = economyProvider.provider
@@ -32,6 +34,7 @@ class Miao : JavaPlugin(), Listener, CommandExecutor {
     companion object {
         val miaoManager = MiaoManager()
         lateinit var instance: Miao
+        val menuPrefix = "◎"
         var prefix = "§7§l[§e§l!§7§l] §7"
         var vaultAPI: Economy? = null
     }

@@ -3,6 +3,7 @@ package com.xbaimiao.miao.bungee.type
 import com.xbaimiao.miao.bungee.channel.Channel
 import com.xbaimiao.miao.bungee.channel.ChannelRead
 import com.xbaimiao.miao.bungee.channel.ChannelType
+import org.bukkit.entity.Player
 
 class ServerChannel(val channel: Channel, val serverName: String) : ChannelRead(channel) {
 
@@ -12,13 +13,14 @@ class ServerChannel(val channel: Channel, val serverName: String) : ChannelRead(
     fun getPlayerList(): List<String>? {
         return try {
             getChannelRead()
-                    .send(ChannelType.PLAYER_LIST)
-                    .writeUTF(serverName)
-                    .readUTF().listFromString()
+                .send(ChannelType.PLAYER_LIST)
+                .writeUTF(serverName)
+                .readUTF().listFromString()
         } catch (e: Exception) {
             null
         }
     }
+
 
     /**
      * 获取服务器在线玩家数量
@@ -26,10 +28,10 @@ class ServerChannel(val channel: Channel, val serverName: String) : ChannelRead(
     fun getPlayerCount(): Int? {
         return try {
             getChannelRead()
-                    .send(ChannelType.PLAYER_LIST)
-                    .writeUTF(serverName)
-                    .readUTF()
-                    .toInt()
+                .send(ChannelType.PLAYER_LIST)
+                .writeUTF(serverName)
+                .readUTF()
+                .toInt()
         } catch (e: Exception) {
             null
         }
@@ -41,9 +43,9 @@ class ServerChannel(val channel: Channel, val serverName: String) : ChannelRead(
     fun getServerInfo(): String? {
         return try {
             getChannelRead()
-                    .send(ChannelType.SERVER)
-                    .writeUTF(serverName)
-                    .readUTF()
+                .send(ChannelType.SERVER)
+                .writeUTF(serverName)
+                .readUTF()
         } catch (e: Exception) {
             null
         }

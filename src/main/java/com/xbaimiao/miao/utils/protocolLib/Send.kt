@@ -12,7 +12,7 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 
 
-class Send {
+object Send {
 
     var manager = ProtocolLibrary.getProtocolManager()!!
 

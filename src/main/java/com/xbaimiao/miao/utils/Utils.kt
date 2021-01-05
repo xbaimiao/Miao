@@ -1,5 +1,10 @@
 package com.xbaimiao.miao.utils
 
+import com.xbaimiao.miao.Miao
+import com.xbaimiao.miao.command.CommandHandle
+import org.bukkit.Bukkit
+import org.bukkit.event.Listener
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
@@ -89,6 +94,16 @@ object Utils {
     @JvmStatic
     fun getCurrentTime(): String {
         return stampToDate(System.currentTimeMillis())
+    }
+
+    @JvmStatic
+    fun Listener.registerListener(plugin: JavaPlugin) {
+        Bukkit.getPluginManager().registerEvents(this, plugin)
+    }
+
+    @JvmStatic
+    fun CommandHandle.registerCommand(plugin: JavaPlugin) {
+        Miao.miaoManager.registerCommand(this, plugin)
     }
 
 }

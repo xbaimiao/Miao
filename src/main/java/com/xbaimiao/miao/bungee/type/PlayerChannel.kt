@@ -13,52 +13,63 @@ class PlayerChannel(private val channel: Channel, val name: String) : ChannelRea
      * 玩家IP地址
      */
     val ip = getChannelRead()
-            .send(ChannelType.IP)
-            .writeUTF(name)
-            .readUTF()
+        .send(ChannelType.IP)
+        .writeUTF(name)
+        .readUTF()
+
+    fun connect(server: String): Boolean {
+        return try {
+            getChannelRead().send(ChannelType.CONNECT)
+                .writeUTF(name)
+                .writeUTF(server)
+                .readUTF() == "true"
+        } catch (e: Exception) {
+            false
+        }
+    }
 
     /**
      * 玩家uuid
      */
     val uuid = getChannelRead()
-            .send(ChannelType.UUID)
-            .writeUTF(name)
-            .readUTF()
+        .send(ChannelType.UUID)
+        .writeUTF(name)
+        .readUTF()
 
     /**
      * 给玩家发送消息
      */
-    fun sendMessage(msg: String):Boolean{
+    fun sendMessage(msg: String): Boolean {
         return getChannelRead()
-                .send(ChannelType.MESSAGE)
-                .writeUTF(name)
-                .writeUTF(msg.replace(" ", ""))
-                .readUTF() == "true"
+            .send(ChannelType.MESSAGE)
+            .writeUTF(name)
+            .writeUTF(msg.replace(" ", ""))
+            .readUTF() == "true"
     }
 
     /**
      * 给玩家发送消息
      */
-    fun sendMessage(msg: TextComponent):Boolean{
+    fun sendMessage(msg: TextComponent): Boolean {
         val gson = Gson()
         val msgString = gson.toJson(msg)
         return getChannelRead()
-                .send(ChannelType.TEXT_COMPONENT)
-                .writeUTF(name)
-                .writeUTF(msgString.replace(" ", ""))
-                .readUTF() == "true"
+            .send(ChannelType.TEXT_COMPONENT)
+            .writeUTF(name)
+            .writeUTF(msgString.replace(" ", ""))
+            .readUTF() == "true"
     }
 
     /**
      * 给玩家发送title
      */
-    fun sendTitle(title: String,subTitle:String):Boolean{
+    fun sendTitle(title: String, subTitle: String): Boolean {
         return getChannelRead()
-                .send(ChannelType.TITLE)
-                .writeUTF(name)
-                .writeUTF(title)
-                .writeUTF(subTitle)
-                .readUTF() == "true"
+            .send(ChannelType.TITLE)
+            .writeUTF(name)
+            .writeUTF(title)
+            .writeUTF(subTitle)
+            .readUTF() == "true"
     }
 
 

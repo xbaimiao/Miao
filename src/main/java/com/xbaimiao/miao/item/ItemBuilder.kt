@@ -8,11 +8,11 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.Damageable
 import org.bukkit.inventory.meta.ItemMeta
 
-class ItemBuilder(private val itemStack: ItemStack) {
+open class ItemBuilder(val itemStack: ItemStack) {
 
     constructor(material: Material) : this(ItemStack(material))
 
-    private val mate =
+    val mate =
         if (itemStack.itemMeta != null)
             itemStack.itemMeta!!
         else Bukkit.getItemFactory().getItemMeta(itemStack.type)!!
@@ -146,7 +146,7 @@ class ItemBuilder(private val itemStack: ItemStack) {
     /**
      * 构建物品
      */
-    fun build(): ItemStack {
+    open fun build(): ItemStack {
         itemStack.itemMeta = mate
         return itemStack.clone()
     }

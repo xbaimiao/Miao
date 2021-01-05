@@ -23,14 +23,14 @@ class BungeeChannel(channel: Channel) : ChannelRead(channel) {
     /**
      * 获取在线玩家数量
      */
-    fun getOnlinePlayerSize(): Int? {
+    fun getOnlinePlayerSize(): Int {
         return try {
             getChannelRead()
                     .send(ChannelType.ALL_PLAYER)
                     .readUTF()
                     .toInt()
         } catch (e: Exception) {
-            null
+            0
         }
     }
 

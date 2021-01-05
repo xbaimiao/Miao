@@ -5,7 +5,6 @@ import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
 import org.bukkit.entity.Player
-import kotlin.random.Random
 
 object Random {
 
@@ -19,9 +18,7 @@ object Random {
      * 随机传送
      */
     @JvmStatic
-    fun tp(p: Player, sendTitle: Boolean, world: World) {
-        val x: Int = Random.nextInt(8000) + 2000
-        val z: Int = Random.nextInt(8000) + 2000
+    fun tp(p: Player, sendTitle: Boolean, world: World, x: Int, z: Int) {
         for (y in 150 downTo 11) {
             val loc = Location(world, x.toDouble(), y.toDouble(), z.toDouble())
             val type = loc.block.type
@@ -42,7 +39,12 @@ object Random {
             }
             return
         }
-        tp(p, sendTitle, world)
+        tp(p, sendTitle, world, x, z)
+    }
+
+    @JvmStatic
+    fun tp(p: Player, sendTitle: Boolean, world: World) {
+        tp(p, sendTitle, world, kotlin.random.Random.nextInt(8000) + 2000, kotlin.random.Random.nextInt(8000) + 2000)
     }
 
     /**

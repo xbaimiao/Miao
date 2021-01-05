@@ -49,8 +49,8 @@ dokka {
 dependencies {
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\spigot-1.16.1.jar")
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\ProtocolLib.jar")
-    compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\Vault-1.7.2.jar")
-    compile files("C:\\Users\\3104026189\\OneDrive\\Lib\\waterfall.jar")
+    compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\Vault-1.7.3.jar")
+    compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\waterfall.jar")
     compileOnly files("C:\\Users\\3104026189\\OneDrive\\Lib\\PlayerPoints.jar")
     compile files("C:\\Users\\3104026189\\OneDrive\\Lib\\gson-2.7.jar")
     implementation "org.jetbrains.kotlin:kotlin-stdlib"

@@ -5,11 +5,27 @@ import java.io.InputStreamReader
 import java.io.PrintWriter
 import java.net.URL
 import java.net.URLConnection
+import java.util.regex.Pattern
 
 object Http {
 
     /**
+     * 获取Ipv4公网ip
+     * @return 公网ip
+     */
+    @JvmStatic
+    fun getIpV4Location(): String? {
+        val p = Pattern.compile("<dd class=\"fz24\">(.*?)</dd>")
+        val m = p.matcher(sendGet("http://ip.chinaz.com"))
+        if (m.find()) {
+            return m.group(1)
+        }
+        return null
+    }
+
+    /**
      * 发送Post请求
+     * @return 网页源代码
      */
     @JvmStatic
     fun sendPost(url: String, param: String): String {

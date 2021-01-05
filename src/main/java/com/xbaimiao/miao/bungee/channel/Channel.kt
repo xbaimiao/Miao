@@ -1,11 +1,8 @@
 package com.xbaimiao.miao.bungee.channel
 
-import com.google.gson.Gson
 import com.xbaimiao.miao.bungee.type.BungeeChannel
 import com.xbaimiao.miao.bungee.type.PlayerChannel
 import com.xbaimiao.miao.bungee.type.ServerChannel
-import net.md_5.bungee.api.chat.ClickEvent
-import net.md_5.bungee.api.chat.TextComponent
 import java.io.InputStream
 import java.io.OutputStream
 import java.net.Socket
@@ -53,11 +50,4 @@ class Channel(val host: String, val port: Int) {
      */
     fun getBungee() = BungeeChannel(this)
 
-
-}
-
-fun main() {
-    val message = TextComponent("点击打开百度")
-    message.clickEvent = ClickEvent(ClickEvent.Action.OPEN_URL,"https://fanyi.baidu.com/#en/zh/restricted")
-    Channel().getPlayer("xbaimiao").sendMessage(message)
 }

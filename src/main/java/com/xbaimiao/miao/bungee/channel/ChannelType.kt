@@ -62,4 +62,6 @@ enum class ChannelType {
      * TextComponent
      */
     TEXT_COMPONENT,
+
+    CONNECT
 }

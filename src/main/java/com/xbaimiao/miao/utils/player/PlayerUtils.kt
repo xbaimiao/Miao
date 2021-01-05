@@ -5,7 +5,7 @@ import org.bukkit.entity.Player
 
 object PlayerUtils {
 
-    fun getServerVersion(): String {
+    private fun getServerVersion(): String {
         val packageName = Bukkit.getServer().javaClass.getPackage().name
         val args = packageName.split(".")
         return args[3]

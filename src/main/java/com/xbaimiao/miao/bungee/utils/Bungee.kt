@@ -30,6 +30,7 @@ object Bungee {
     /**
      * 发送消息
      */
+    @JvmStatic
     fun sendMessage(player: Player, string: String) = sendBungeeData(player, "Message", player.name, string)
 
     private fun sendBungeeData(player: Player, vararg args: String) {
